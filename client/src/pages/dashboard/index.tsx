@@ -2,13 +2,12 @@ import { useUser } from "@clerk/clerk-react";
 import FinancialRecordForm from "./financial-record-form";
 const Dashboard = () => {
   const { user } = useUser();
-  console.log(user);
+
   return (
     <div className="dashboard-container">
       <h1>Welcome {user?.firstName}! Here are your Finances</h1>
       <FinancialRecordForm />
     </div>
-
   );
 };
 
