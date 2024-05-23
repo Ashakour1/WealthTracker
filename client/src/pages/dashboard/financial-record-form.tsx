@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
+import { useFinancialRecords } from "../../contexts/financial-record-context";
 const FinancialRecordForm = () => {
   const [description, setDescription] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [paymentMethod, setPaymentMethod] = useState<string>("");
+
+  const {records,addRecord} = useFinancialRecords()
 
   const {user} = useUser();
 
@@ -12,7 +15,7 @@ const FinancialRecordForm = () => {
     e.preventDefault();
 
     const newRecord = {
-        userId : user?.id,
+        userId : user?.id ?? "",
         date : new Date(),
         description : description,
         amount : parseFloat(amount),
@@ -20,7 +23,7 @@ const FinancialRecordForm = () => {
         paymentMethod : paymentMethod,
     }
 
-    // AddRecord(newRecord)
+    addRecord(newRecord)
     setDescription("");
     setAmount("");
     setCategory("");
