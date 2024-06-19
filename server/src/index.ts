@@ -7,12 +7,7 @@ import cors from "cors";
 
 const app: Express = express();
 
-app.use(
-  cors({
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    origin: "*",
-  })
-);
+app.use(cors());
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
